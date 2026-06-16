@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="hero-eyebrow">Adventures by Shahril</p>
+  <h1>Roads taken, plates emptied,<br><em>stages not missed.</em></h1>
+</section>
+
+<section class="posts-grid">
+  {% for post in site.posts %}
+  <a href="{{ post.url }}" class="post-card">
+    {% if post.cover_image %}
+    <div class="card-image">
+      <img src="{{ post.cover_image }}" alt="{{ post.title }}" />
+    </div>
+    {% else %}
+    <div class="card-image card-image--empty"></div>
+    {% endif %}
+    <div class="card-body">
+      <span class="card-category">{{ post.category }}</span>
+      <h2>{{ post.title }}</h2>
+      <time>{{ post.date | date: "%d %b %Y" }}</time>
+    </div>
+  </a>
+  {% endfor %}
+</section>

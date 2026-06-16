@@ -1,0 +1,8 @@
+title: Shahtril Trails
+description: Adventure bike rides, food finds, and festival stories by Shahril.
+baseurl: ""
+url: "https://shahtriltrails.netlify.app"
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+plugins:
+  - jekyll-feed
