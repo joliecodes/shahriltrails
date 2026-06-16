@@ -6,10 +6,10 @@ layout: default
   <h1>Roads taken, plates emptied,<br><em>stages not missed.</em></h1>
 </section>
 
-<section class="posts-grid">
+<section class="posts-grid" id="posts-grid">
   {% for post in site.posts %}
-  <a href="{{ post.url }}" class="post-card">
-    {% if post.cover_image %}
+  <a href="{{ post.url }}" class="post-card" data-category="{{ post.category }}">
+    {% if post.cover_image and post.cover_image != "" %}
     <div class="card-image">
       <img src="{{ post.cover_image }}" alt="{{ post.title }}" />
     </div>
@@ -24,3 +24,20 @@ layout: default
   </a>
   {% endfor %}
 </section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const active = params.get('category');
+  if (active) {
+    document.querySelectorAll('.post-card').forEach(card => {
+      if (card.dataset.category !== active) card.style.display = 'none';
+    });
+    document.querySelectorAll('nav a').forEach(link => {
+      const url = new URL(link.href);
+      if (url.searchParams.get('category') === active) {
+        link.style.color = 'var(--ink)';
+        link.style.fontWeight = '600';
+      }
+    });
+  }
+</script>
